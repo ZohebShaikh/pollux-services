@@ -1,35 +1,44 @@
 rabbitmq:
-  clusterDomain: k8s.cluster.local
+  # clusterDomain: k8s.cluster.local
   diagnosticsMode:
     enabled: true
   image:
     debug: true
-  extraConfiguration: |-
-    stomp.default_user = guest
-    stomp.default_pass = guest
+  # extraConfiguration: |-
+  #   stomp.default_user = guest
+  #   stomp.default_pass = guest
   auth:
     username: admin
     existingPasswordSecret: rabbitmq-secrets
     existingErlangSecret: rabbitmq-secrets
     updatePassword: true
-  extraPlugins: rabbitmq_jms_topic_exchange,rabbitmq_stomp
+  # extraPlugins: rabbitmq_jms_topic_exchange,rabbitmq_stomp
   persistence:
     enabled: false
-  initScriptsCM: rabbitmq-init
+  # initScriptsCM: rabbitmq-init
   rbac:
     create: false
   networkPolicy:
     enabled: false
-  serviceAccount:
-    create: false
-    name: default-full-access-mounted
-  extraContainerPorts:
-    - name: stomp
-      containerPort: 61613
-  service:
-    type: LoadBalancer
-    # loadBalancerIP: <loadBalancerIP>
-    extraPorts:
-      - name: stomp
-        port: 61613
-        targetPort: stomp
+  # serviceAccount:
+  #   create: false
+  #   name: default-full-access-mounted
+  # extraContainerPorts:
+  #   - name: stomp
+  #     containerPort: 61613
+  # service:
+  #   # type: LoadBalancer
+  #   # loadBalancerIP: <loadBalancerIP>
+  #   extraPorts:
+  #     - name: stomp
+  #       port: 61613
+  #       targetPort: stomp
+  memoryHighWatermark:
+    enabled: true
+    type: relative
+    value: 0.4
+  resources:
+    limits:
+      memory: 2Gi
+  clustering:
+    forceBoot: true
