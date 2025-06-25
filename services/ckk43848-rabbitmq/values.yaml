@@ -1,4 +1,6 @@
 rabbitmq:
+  diagnosticsMode:
+    enabled: true
   image:
     debug: true
   extraConfiguration: |-
@@ -7,7 +9,7 @@ rabbitmq:
   auth:
     username: admin
     existingPasswordSecret: rabbitmq-secrets
-    existingErlangSecret: rabbitmq-secrets
+    # existingErlangSecret: rabbitmq-secrets
   extraPlugins: rabbitmq_jms_topic_exchange,rabbitmq_stomp
   persistence:
     enabled: false
