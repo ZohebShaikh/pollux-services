@@ -1,4 +1,6 @@
 rabbitmq:
+  image:
+    debug: true
   extraConfiguration: |-
     stomp.default_user = guest
     stomp.default_pass = guest
@@ -20,7 +22,7 @@ rabbitmq:
       containerPort: 61613
   service:
     type: LoadBalancer
-    # loadBalancerIP: <loadBalancerIP> 
+    # loadBalancerIP: <loadBalancerIP>
     extraPorts:
       - name: stomp
         port: 61613
