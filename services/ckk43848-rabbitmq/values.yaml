@@ -18,6 +18,8 @@ rabbitmq:
   initScriptsCM: rabbitmq-init
   rbac:
     create: false
+  networkPolicy:
+    enabled: false
   serviceAccount:
     create: false
     name: default-full-access-mounted
