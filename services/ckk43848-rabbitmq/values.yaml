@@ -11,6 +11,7 @@ rabbitmq:
     username: admin
     existingPasswordSecret: rabbitmq-secrets
     existingErlangSecret: rabbitmq-secrets
+    updatePassword: true
   extraPlugins: rabbitmq_jms_topic_exchange,rabbitmq_stomp
   persistence:
     enabled: false
